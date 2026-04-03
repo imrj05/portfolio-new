@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "ui-cloner": {
+      "source": "ragnar-pwninskjold/tech-snacks",
+      "sourceType": "github",
+      "computedHash": "59274756d877f82e162da8cf9e276f657b3710067a38aff0d705235ed4c254ba"
+    }
+  }
+}

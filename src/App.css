@@ -1,0 +1,287 @@
+.header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--background);
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.logo-tag {
+  background: var(--button-hover);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav-icon-link {
+  color: var(--text-secondary);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-icon-link:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.nav-divider {
+  width: 1px;
+  height: 1.5rem;
+  background: var(--border);
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--button-hover);
+  color: var(--text-primary);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* Hero */
+.hero {
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+/* Playground */
+.playground-section {
+  padding: 2rem 0;
+}
+
+.playground-card {
+  aspect-ratio: 16 / 9;
+  border: 2px dashed var(--border);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--surface);
+}
+
+.playground-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+  transform: scale(1.005);
+}
+
+.playground-content {
+  text-align: center;
+}
+
+.playground-icon-wrapper {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.playground-card:hover .playground-icon-wrapper {
+  color: var(--accent);
+}
+
+.playground-text {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.playground-subtext {
+  font-size: 0.875rem;
+  color: var(--text-label);
+  margin-top: 0.25rem;
+}
+
+/* Tech Sections */
+.tech-section {
+  padding: 4rem 0;
+}
+
+.tech-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.tech-content {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.code-block {
+  margin: 0;
+  overflow-x: auto;
+}
+
+.code-line {
+  display: block;
+}
+
+.code-prompt {
+  color: var(--accent);
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+/* Props Table */
+.props-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.prop-row {
+  display: grid;
+  grid-template-columns: 140px 100px 1fr;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.prop-name {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+
+.prop-type {
+  color: var(--text-label);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+}
+
+.prop-desc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Experience / Changelog */
+.experience-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.experience-entry {
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.experience-role {
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+
+.experience-company {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.experience-link {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.experience-link:hover {
+  color: var(--accent);
+}
+
+.experience-badge {
+  background: var(--accent);
+  color: var(--background);
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.experience-desc {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .prop-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
