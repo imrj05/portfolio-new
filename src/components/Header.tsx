@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Twitter, LogOut, User } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const sectionLinks = [
     { label: 'About', href: '#about' },
@@ -13,6 +14,8 @@ const sectionLinks = [
 export default function Header() {
     const [activeSection, setActiveSection] = useState('');
     const location = useLocation();
+    const navigate = useNavigate();
+    const { user, logout } = useAuth();
     const isHome = location.pathname === '/';
 
     useEffect(() => {
@@ -95,6 +98,25 @@ export default function Header() {
                     >
                         Resume
                     </a>
+                    {user ? (
+                        <>
+                            <span className="nav-user">
+                                <User size={14} />
+                                {user.name}
+                            </span>
+                            <button
+                                className="nav-icon-link nav-logout-btn"
+                                onClick={async () => { await logout(); navigate('/'); }}
+                                aria-label="Logout"
+                            >
+                                <LogOut size={18} />
+                            </button>
+                        </>
+                    ) : (
+                        <Link to="/login" className="nav-cta">
+                            Login
+                        </Link>
+                    )}
                     <ThemeToggle />
                 </div>
             </div>
