@@ -1,49 +1,102 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 
+const sectionLinks = [
+    { label: 'About', href: '#about' },
+    { label: 'Stack', href: '#stack' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Projects', href: '#projects' },
+];
+
 export default function Header() {
+    const [activeSection, setActiveSection] = useState('');
+    const location = useLocation();
+    const isHome = location.pathname === '/';
+
+    useEffect(() => {
+        if (!isHome) {
+            setActiveSection('');
+            return;
+        }
+
+        const sections = sectionLinks.map(n => n.href.slice(1));
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            },
+            { rootMargin: '-40% 0px -55% 0px' }
+        );
+
+        sections.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, [isHome]);
+
     return (
         <header className="header animate-reveal">
             <div className="container header-content">
-                <a href="#home" className="logo" aria-label="Go to top">
+                <Link to="/" className="logo" aria-label="Go to home">
                     <img src="/branding/logo-light.svg" alt="Rajeshwar Kashyap" className="logo-image logo-image-light" />
                     <img src="/branding/logo-dark.svg" alt="Rajeshwar Kashyap" className="logo-image logo-image-dark" />
-                </a>
+                </Link>
 
-                <nav className="nav-links">
-                    <a href="#about" className="nav-text-link" aria-label="Go to about section">
-                        About
-                    </a>
-                    <a href="#stack" className="nav-text-link" aria-label="Go to tech stack section">
-                        Stack
-                    </a>
-                    <a href="#experience" className="nav-text-link" aria-label="Go to experience section">
-                        Experience
-                    </a>
-                    <a href="#projects" className="nav-text-link" aria-label="Go to projects section">
-                        Projects
-                    </a>
-                    <div className="nav-divider"></div>
-                    <a href="https://github.com/work-rjkashyap" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="GitHub">
-                        <Github size={20} />
+                <nav className="nav-pill">
+                    {sectionLinks.map((item) =>
+                        isHome ? (
+                            <a
+                                key={item.href}
+                                href={item.href}
+                                className={`nav-pill-link${activeSection === item.href.slice(1) ? ' nav-pill-link--active' : ''}`}
+                            >
+                                {item.label}
+                            </a>
+                        ) : (
+                            <Link
+                                key={item.href}
+                                to={`/${item.href}`}
+                                className="nav-pill-link"
+                            >
+                                {item.label}
+                            </Link>
+                        )
+                    )}
+                    <Link
+                        to="/blogs"
+                        className={`nav-pill-link${location.pathname.startsWith('/blogs') ? ' nav-pill-link--active' : ''}`}
+                    >
+                        Blogs
+                    </Link>
+                </nav>
+
+                <div className="nav-actions">
+                    <a href="https://github.com/imrj05" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="GitHub">
+                        <Github size={18} />
                     </a>
                     <a href="https://linkedin.com/in/rajeshwar-kashyap" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="LinkedIn">
-                        <Linkedin size={20} />
+                        <Linkedin size={18} />
                     </a>
-                    <a href="https://twitter.com/RajeshwarKash11" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="Twitter">
-                        <Twitter size={20} />
+                    <a href="https://x.com/i_am_rj05" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="Twitter">
+                        <Twitter size={18} />
                     </a>
                     <a
                         href="https://ik.imagekit.io/rjkashyap05/portfolio/resume_rajeshwar.pdf?ik-sdk-version=javascript-1.4.3&updatedAt=1662305306215"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="nav-cta"
-                        aria-label="Open resume"
                     >
                         Resume
                     </a>
                     <ThemeToggle />
-                </nav>
+                </div>
             </div>
         </header>
     );

@@ -118,7 +118,7 @@ export const projects: Project[] = [
     name: 'unified-ui',
     stack: 'TypeScript, Next.js, Tailwind CSS, Radix UI, Framer Motion',
     description: 'Token-driven React design system and interactive documentation portal focused on reusable UI primitives.',
-    githubUser: 'work-rjkashyap',
+    githubUser: 'imrj05',
     githubRepo: 'unified-ui',
   },
   {
