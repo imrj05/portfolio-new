@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
-import { Github, Linkedin, Twitter, LogOut, User } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const sectionLinks = [
     { label: 'About', href: '#about' },
@@ -14,9 +13,19 @@ const sectionLinks = [
 export default function Header() {
     const [activeSection, setActiveSection] = useState('');
     const location = useLocation();
-    const navigate = useNavigate();
-    const { user, logout } = useAuth();
     const isHome = location.pathname === '/';
+
+    function isSectionActive(href: string) {
+        if (isHome) {
+            return activeSection === href.slice(1);
+        }
+
+        if (href === '#projects') {
+            return location.pathname.startsWith('/projects');
+        }
+
+        return false;
+    }
 
     useEffect(() => {
         if (!isHome) {
@@ -58,7 +67,7 @@ export default function Header() {
                             <a
                                 key={item.href}
                                 href={item.href}
-                                className={`nav-pill-link${activeSection === item.href.slice(1) ? ' nav-pill-link--active' : ''}`}
+                                className={`nav-pill-link${isSectionActive(item.href) ? ' nav-pill-link--active' : ''}`}
                             >
                                 {item.label}
                             </a>
@@ -66,7 +75,7 @@ export default function Header() {
                             <Link
                                 key={item.href}
                                 to={`/${item.href}`}
-                                className="nav-pill-link"
+                                className={`nav-pill-link${isSectionActive(item.href) ? ' nav-pill-link--active' : ''}`}
                             >
                                 {item.label}
                             </Link>
@@ -98,25 +107,6 @@ export default function Header() {
                     >
                         Resume
                     </a>
-                    {user ? (
-                        <>
-                            <span className="nav-user">
-                                <User size={14} />
-                                {user.name}
-                            </span>
-                            <button
-                                className="nav-icon-link nav-logout-btn"
-                                onClick={async () => { await logout(); navigate('/'); }}
-                                aria-label="Logout"
-                            >
-                                <LogOut size={18} />
-                            </button>
-                        </>
-                    ) : (
-                        <Link to="/login" className="nav-cta">
-                            Login
-                        </Link>
-                    )}
                     <ThemeToggle />
                 </div>
             </div>

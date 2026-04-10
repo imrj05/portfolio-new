@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import TechnicalSection from './TechnicalSection';
 import { projects } from '../data/portfolio';
-import { Braces, Database, Github, Layers, Server, Smartphone, Wind, Box, Sparkles } from 'lucide-react';
+import { ArrowRight, Braces, Database, ExternalLink, Github, Layers, Server, Smartphone, Wind, Box, Sparkles } from 'lucide-react';
 
 function iconForStackItem(item: string) {
     const key = item.toLowerCase();
@@ -35,30 +36,35 @@ export default function ProjectsSection() {
             <div className="project-grid">
                 {projects.map((project) => {
                     const repoUrl = `https://github.com/${project.githubUser}/${project.githubRepo}`;
-                    const stackItems = project.stack.split(',').map((item) => item.trim());
+                    const primaryLink = project.links?.[0];
 
                     return (
-                        <article className="project-card" key={project.githubRepo}>
+                        <article className="project-card" key={project.slug}>
                             <div className="project-card-header">
-                                <h3 className="project-title">
-                                    <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                                        {project.name}
+                                <div className="project-heading">
+                                    <p className="project-category">{project.category}</p>
+                                    <h3 className="project-title">{project.name}</h3>
+                                </div>
+                                <div className="project-card-actions">
+                                    <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="project-github-btn" aria-label={`Open ${project.name} repository`}>
+                                        <Github size={15} />
+                                        <span>Repo</span>
                                     </a>
-                                </h3>
-                                <a href={repoUrl} target="_blank" rel="noopener noreferrer" className="project-github-btn" aria-label={`Open ${project.name} repository`}>
-                                    <Github size={15} />
-                                    <span>Repo</span>
-                                </a>
+                                    <Link to={`/projects/${project.slug}`} className="project-details-btn" aria-label={`View details for ${project.name}`}>
+                                        <span>Details</span>
+                                        <ArrowRight size={15} />
+                                    </Link>
+                                </div>
                             </div>
 
                             <p className="project-description">{project.description}</p>
 
                             <div className="project-stack-list" aria-label={`${project.name} tech stack`}>
-                                {stackItems.map((item) => {
+                                {project.technologies.map((item) => {
                                     const StackIcon = iconForStackItem(item);
 
                                     return (
-                                        <span className="project-stack-chip" key={`${project.githubRepo}-${item}`}>
+                                        <span className="project-stack-chip" key={`${project.slug}-${item}`}>
                                             <StackIcon size={13} />
                                             <span>{item}</span>
                                         </span>
@@ -66,9 +72,30 @@ export default function ProjectsSection() {
                                 })}
                             </div>
 
-                            <p className="project-repo-meta">
-                                {project.githubUser}/{project.githubRepo}
-                            </p>
+                            <div className="project-highlights" aria-label={`${project.name} highlights`}>
+                                {project.highlights.slice(0, 2).map((highlight) => (
+                                    <p className="project-highlight" key={`${project.slug}-${highlight}`}>
+                                        {highlight}
+                                    </p>
+                                ))}
+                            </div>
+
+                            <div className="project-footer">
+                                <p className="project-repo-meta">
+                                    {project.githubUser}/{project.githubRepo}
+                                </p>
+                                {primaryLink ? (
+                                    <a
+                                        href={primaryLink.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="project-secondary-link"
+                                    >
+                                        <span>{primaryLink.label}</span>
+                                        <ExternalLink size={14} />
+                                    </a>
+                                ) : null}
+                            </div>
                         </article>
                     )
                 })}
