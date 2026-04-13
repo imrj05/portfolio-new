@@ -31,7 +31,7 @@ export default function Hero() {
                     </div>
                 </div>
                 <aside className="hero-profile-card animate-reveal stagger-2" aria-label="Profile card">
-                    <img src="https://github.com/imrj05.png" alt="Rajeshwar Kashyap" className="hero-profile-image" />
+                    <img src="/branding/profile.jpg" alt="Rajeshwar Kashyap" className="hero-profile-image" />
                     <p className="hero-profile-name">Rajeshwar Kashyap</p>
                     <p className="hero-profile-role">Full-Stack Developer</p>
                     <p className="hero-profile-meta">India · Remote-first · Available for product teams</p>
