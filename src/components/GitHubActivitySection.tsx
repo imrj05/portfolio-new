@@ -35,7 +35,7 @@ function buildWeeks(contributions: ContributionDay[]): (ContributionDay | null)[
     start.setDate(start.getDate() - start.getDay());
 
     const weeks: (ContributionDay | null)[][] = [];
-    let current = new Date(start);
+    const current = new Date(start);
 
     while (current <= today) {
         const week: (ContributionDay | null)[] = [];

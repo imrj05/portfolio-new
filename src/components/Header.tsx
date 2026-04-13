@@ -11,9 +11,9 @@ const sectionLinks = [
 ];
 
 export default function Header() {
-    const [activeSection, setActiveSection] = useState('');
     const location = useLocation();
     const isHome = location.pathname === '/';
+    const [activeSection, setActiveSection] = useState('');
 
     function isSectionActive(href: string) {
         if (isHome) {
@@ -29,7 +29,6 @@ export default function Header() {
 
     useEffect(() => {
         if (!isHome) {
-            setActiveSection('');
             return;
         }
 
