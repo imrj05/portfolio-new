@@ -1,5 +1,4 @@
 import TechnicalSection from './TechnicalSection';
-import CompanyLinkPreview from './CompanyLinkPreview';
 import { experience, formatExperienceDuration, formatExperienceRange, getTotalExperienceDuration } from '../data/portfolio';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -30,12 +29,9 @@ export default function ExperienceSection() {
                                     <span className="experience-role">{exp.role}</span>
                                     <span className="experience-company">
                                         {exp.url ? (
-                                            <CompanyLinkPreview
-                                                company={exp.company}
-                                                url={exp.url}
-                                                previewMode={exp.previewMode}
-                                                description={exp.previewDescription}
-                                            />
+                                            <a href={exp.url} target="_blank" rel="noopener noreferrer" className="experience-link">
+                                                {exp.company}
+                                            </a>
                                         ) : (
                                             exp.company
                                         )}

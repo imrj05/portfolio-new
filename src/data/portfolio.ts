@@ -9,8 +9,6 @@ export interface Experience {
   url?: string;
   logoUrl: string;
   logoMode?: 'neutral' | 'light' | 'dark';
-  previewMode?: 'iframe' | 'fallback';
-  previewDescription?: string;
   description: string;
   employmentType: string;
   startDate: string;
@@ -53,8 +51,6 @@ export const experience: Experience[] = [
     url: 'https://hyphun.com/',
     logoUrl: hyphunLogo,
     logoMode: 'dark',
-    previewMode: 'iframe',
-    previewDescription: 'Live company website preview',
     description: 'Leading full-stack delivery on-site across production products while contributing to team coordination and day-to-day execution.',
     employmentType: 'Full-time',
     startDate: '2023-08',
@@ -68,8 +64,6 @@ export const experience: Experience[] = [
     url: 'https://fleksa.com/en',
     logoUrl: fleksaLogo,
     logoMode: 'dark',
-    previewMode: 'fallback',
-    previewDescription: 'Live embedding is blocked by the site, so this opens directly in a new tab.',
     description: 'Worked remotely across TypeScript and Electron.js product development in a senior full-stack role within a modern JavaScript stack.',
     employmentType: 'Full-time',
     startDate: '2022-11',
@@ -83,8 +77,6 @@ export const experience: Experience[] = [
     url: 'https://www.sarsspl.com/',
     logoUrl: sarLogo,
     logoMode: 'light',
-    previewMode: 'iframe',
-    previewDescription: 'Live company website preview',
     description: 'Built backend and full-stack solutions with a strong focus on API development, TypeScript workflows, and delivery across client projects.',
     employmentType: 'Full-time',
     startDate: '2021-02',
@@ -110,8 +102,6 @@ export const experience: Experience[] = [
     url: 'https://www.pvdinfotech.com/',
     logoUrl: pvdLogo,
     logoMode: 'light',
-    previewMode: 'fallback',
-    previewDescription: 'Website preview unavailable, but the company link still opens in a new tab.',
     description: 'Started in an entry-level web development role focused on building foundational frontend and early full-stack implementation skills.',
     employmentType: 'Full-time',
     startDate: '2018-09',
