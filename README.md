@@ -1,5 +1,15 @@
 # React + TypeScript + Vite
 
+## Analytics
+
+This app uses `@aptabase/react` with self-hosted Aptabase.
+
+1. Copy `.env.example` to `.env`.
+2. Set `VITE_APTABASE_APP_KEY` to your self-hosted Aptabase app key.
+3. Set `VITE_APTABASE_HOST` to your Aptabase base URL, for example `https://analytics.example.com`.
+
+When both variables are present, the app initializes Aptabase at the root and sends a `page_view` event on route changes.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
