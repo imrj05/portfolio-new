@@ -3,7 +3,6 @@ import './App.css'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import { AptabasePageTracker } from './lib/analytics'
 import HomePage from './pages/HomePage'
 import BlogsPage from './pages/BlogsPage'
 import BlogDetailPage from './pages/BlogDetailPage'
@@ -34,7 +33,6 @@ function ScrollToHash() {
 function App() {
     return (
         <BrowserRouter>
-            <AptabasePageTracker />
             <ScrollToHash />
             <div className="layout">
                 <Header />
