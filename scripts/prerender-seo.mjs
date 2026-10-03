@@ -40,6 +40,13 @@ function renderSeoBlock(route) {
         <!-- seo:end -->`;
 }
 
+// Crawlers that do not run JavaScript see an empty SPA shell. Inject the
+// route's heading as a fallback; React clears #root on mount, so the rendered
+// page keeps its single visible <h1>.
+function renderFallbackRoot(route) {
+    return `<div id="root"><h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">${escapeAttr(route.heading)}</h1></div>`;
+}
+
 const template = await readFile(path.join(distDir, 'index.html'), 'utf8');
 if (!template.includes('<!-- seo:start -->')) {
     throw new Error('dist/index.html is missing the <!-- seo:start --> marker.');
@@ -48,7 +55,9 @@ if (!template.includes('<!-- seo:start -->')) {
 const routes = await loadSeoRoutes();
 
 for (const route of routes) {
-    const html = template.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/, renderSeoBlock(route));
+    const html = template
+        .replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/, renderSeoBlock(route))
+        .replace('<div id="root"></div>', renderFallbackRoot(route));
     const output = route.path === '/' ? path.join(distDir, 'index.html') : path.join(distDir, route.path, 'index.html');
 
     await mkdir(path.dirname(output), { recursive: true });
@@ -60,7 +69,9 @@ for (const route of routes) {
 const homeRoute = routes.find((route) => route.path === '/');
 await writeFile(
     path.join(distDir, '404.html'),
-    template.replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/, renderSeoBlock(homeRoute))
+    template
+        .replace(/<!-- seo:start -->[\s\S]*?<!-- seo:end -->/, renderSeoBlock(homeRoute))
+        .replace('<div id="root"></div>', renderFallbackRoot(homeRoute))
 );
 
 console.log(`Prerendered SEO metadata for ${routes.length} routes.`);

@@ -1,0 +1,24 @@
+{
+    "name": "Rajeshwar Kashyap — Full-Stack Developer",
+    "short_name": "Rajeshwar",
+    "description": "Full-stack developer building scalable web and mobile apps with React, React Native, Node.js, and AWS.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#050505",
+    "theme_color": "#050505",
+    "icons": [
+        {
+            "src": "/pwa-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/pwa-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

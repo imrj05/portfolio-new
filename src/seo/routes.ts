@@ -19,6 +19,7 @@ export interface SeoRoute {
     url: string;
     title: string;
     description: string;
+    heading: string;
     ogTitle: string;
     type: 'website' | 'article';
     image: string;
@@ -28,7 +29,7 @@ export interface SeoRoute {
 }
 
 const HOME_DESCRIPTION =
-    'Full-stack developer building scalable web and mobile apps with React, React Native, Node.js, and AWS. 7+ years shipping production products across fintech, e-commerce, and SaaS.';
+    'Full-stack developer building scalable web and mobile apps with React, Node.js, and AWS. 7+ years shipping production products across fintech and SaaS.';
 
 const home: SeoRoute = {
     path: '/',
@@ -36,6 +37,7 @@ const home: SeoRoute = {
     title: 'Rajeshwar Kashyap | Full-Stack Developer',
     ogTitle: 'Rajeshwar Kashyap — Full-Stack Developer',
     description: HOME_DESCRIPTION,
+    heading: 'Rajeshwar',
     type: 'website',
     image: `${SITE_URL}/og/og-home.png`,
     imageType: 'image/png',
@@ -54,6 +56,7 @@ const showcase: SeoRoute = {
     title: 'Showcase — Live apps by Rajeshwar Kashyap',
     ogTitle: 'Showcase — Live apps & tools',
     description: 'Shipped apps and tools you can open right now — each with a live link and its source.',
+    heading: 'Showcase',
     type: 'website',
     image: `${SITE_URL}/og/og-showcase.png`,
     imageType: 'image/png',
@@ -73,6 +76,7 @@ const blogs: SeoRoute = {
     title: 'Writing — Rajeshwar Kashyap',
     ogTitle: 'Writing — Notes on building software',
     description: "Thoughts on building software, lessons from production, and things I've learned along the way.",
+    heading: 'Blog',
     type: 'website',
     image: `${SITE_URL}/og/og-blogs.png`,
     imageType: 'image/png',
@@ -91,6 +95,7 @@ const projectRoutes: SeoRoute[] = projects.map((project) => ({
     title: `${project.name} — ${project.category} by Rajeshwar Kashyap`,
     ogTitle: `${project.name} — ${project.category}`,
     description: project.description,
+    heading: project.name,
     type: 'website',
     image: `${SITE_URL}/og/og-project-${project.slug}.png`,
     imageType: 'image/png',
@@ -117,6 +122,7 @@ const blogRoutes: SeoRoute[] = posts.map((post) => ({
     title: `${post.title} — Rajeshwar Kashyap`,
     ogTitle: post.title,
     description: post.excerpt,
+    heading: post.title,
     type: 'article',
     image: ogCover(post.cover),
     imageType: 'image/jpeg',
