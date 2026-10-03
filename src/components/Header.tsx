@@ -1,31 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { socialLinks, works } from '../data/portfolio';
 
 const sectionLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Stack', href: '#stack' },
+    { label: 'Work', href: '#work', count: works.length },
     { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
+    { label: 'Services', href: '#services' },
+    { label: 'About', href: '#about' },
 ];
 
 export default function Header() {
     const location = useLocation();
     const isHome = location.pathname === '/';
     const [activeSection, setActiveSection] = useState('');
-
-    function isSectionActive(href: string) {
-        if (isHome) {
-            return activeSection === href.slice(1);
-        }
-
-        if (href === '#projects') {
-            return location.pathname.startsWith('/projects');
-        }
-
-        return false;
-    }
 
     useEffect(() => {
         if (!isHome) {
@@ -55,58 +43,64 @@ export default function Header() {
     return (
         <header className="header animate-reveal">
             <div className="container header-content">
-                <Link to="/" className="logo" aria-label="Go to home">
-                    <img src="/branding/logo-light.svg" alt="Rajeshwar Kashyap" className="logo-image logo-image-light" />
-                    <img src="/branding/logo-dark.svg" alt="Rajeshwar Kashyap" className="logo-image logo-image-dark" />
+                <Link to="/" className="header-brand" aria-label="Rajeshwar Kashyap — home">
+                    <img
+                        src="/branding/logo-light.svg"
+                        alt="Rajeshwar Kashyap"
+                        className="header-brand-logo header-brand-logo--light"
+                        width={870}
+                        height={469}
+                    />
+                    <img
+                        src="/branding/logo-dark.svg"
+                        alt=""
+                        className="header-brand-logo header-brand-logo--dark"
+                        width={870}
+                        height={469}
+                    />
                 </Link>
 
-                <nav className="nav-pill">
+                <nav className="nav-links" aria-label="Sections">
                     {sectionLinks.map((item) =>
                         isHome ? (
                             <a
                                 key={item.href}
                                 href={item.href}
-                                className={`nav-pill-link${isSectionActive(item.href) ? ' nav-pill-link--active' : ''}`}
+                                className={`nav-link${activeSection === item.href.slice(1) ? ' nav-link--active' : ''}`}
                             >
                                 {item.label}
+                                {item.count ? <span className="nav-count">{item.count}</span> : null}
                             </a>
                         ) : (
                             <Link
                                 key={item.href}
                                 to={`/${item.href}`}
-                                className={`nav-pill-link${isSectionActive(item.href) ? ' nav-pill-link--active' : ''}`}
+                                className="nav-link"
                             >
                                 {item.label}
+                                {item.count ? <span className="nav-count">{item.count}</span> : null}
                             </Link>
                         )
                     )}
                     <Link
-                        to="/blogs"
-                        className={`nav-pill-link${location.pathname.startsWith('/blogs') ? ' nav-pill-link--active' : ''}`}
+                        to="/showcase"
+                        className={`nav-link${location.pathname.startsWith('/showcase') ? ' nav-link--active' : ''}`}
                     >
-                        Blogs
+                        Showcase
+                    </Link>
+                    <Link
+                        to="/blogs"
+                        className={`nav-link${location.pathname.startsWith('/blogs') ? ' nav-link--active' : ''}`}
+                    >
+                        Writing
                     </Link>
                 </nav>
 
                 <div className="nav-actions">
-                    <a href="https://github.com/imrj05" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="GitHub">
-                        <Github size={18} />
-                    </a>
-                    <a href="https://linkedin.com/in/rajeshwar-kashyap" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="LinkedIn">
-                        <Linkedin size={18} />
-                    </a>
-                    <a href="https://x.com/i_am_rj05" target="_blank" rel="noopener noreferrer" className="nav-icon-link" aria-label="Twitter">
-                        <Twitter size={18} />
-                    </a>
-                    <a
-                        href="https://ik.imagekit.io/rjkashyap05/portfolio/resume_rajeshwar.pdf?ik-sdk-version=javascript-1.4.3&updatedAt=1662305306215"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="nav-cta"
-                    >
-                        Resume
-                    </a>
                     <ThemeToggle />
+                    <a href={`mailto:${socialLinks.email}`} className="nav-cta">
+                        Get in touch
+                    </a>
                 </div>
             </div>
         </header>

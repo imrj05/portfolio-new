@@ -1,35 +1,28 @@
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { resumeUrl, socialLinks } from '../data/portfolio';
 
 export default function Footer() {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="site-footer">
-            <div className="container footer-inner">
-                <div className="footer-top">
-                    <div className="footer-brand">
-                        <span className="footer-name">Rajeshwar Kashyap</span>
-                        <span className="footer-tagline">Full-Stack Developer &middot; India &middot; Remote-first</span>
-                    </div>
-                    <div className="footer-socials">
-                        <a href="mailto:work.rjkashyap05@gmail.com" className="footer-social-link" aria-label="Email">
-                            <Mail size={16} />
-                        </a>
-                        <a href="https://github.com/imrj05" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="GitHub">
-                            <Github size={16} />
-                        </a>
-                        <a href="https://linkedin.com/in/rajeshwar-kashyap" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn">
-                            <Linkedin size={16} />
-                        </a>
-                        <a href="https://x.com/i_am_rj05" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Twitter">
-                            <Twitter size={16} />
-                        </a>
-                    </div>
-                </div>
-                <div className="footer-bottom">
-                    <span>&copy; {year} Rajeshwar Kashyap</span>
-                    <span className="footer-dot">&middot;</span>
-                    <span>Made with <span style={{ color: 'var(--accent)' }}>&hearts;</span> love</span>
+        <footer className="site-footer" id="contact">
+            <div className="container">
+                <a className="footer-talk" href={`mailto:${socialLinks.email}`}>
+                    Let's talk
+                    <ArrowUpRight aria-hidden="true" />
+                </a>
+
+                <nav className="footer-links" aria-label="Contact links">
+                    <a className="footer-link" href={`mailto:${socialLinks.email}`}>Email</a>
+                    <a className="footer-link" href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a className="footer-link" href={socialLinks.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a className="footer-link" href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">X / Twitter</a>
+                    <a className="footer-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">Resume</a>
+                </nav>
+
+                <div className="footer-credit">
+                    <span>Design &amp; development — Rajeshwar Kashyap</span>
+                    <span>© {year}</span>
                 </div>
             </div>
         </footer>

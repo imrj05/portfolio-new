@@ -22,6 +22,7 @@ export interface Project {
   name: string;
   category: string;
   description: string;
+  screenshots?: string;
   githubUser: string;
   githubRepo: string;
   technologies: string[];
@@ -179,6 +180,56 @@ export const about = {
     { label: 'Location', value: 'India' },
   ],
 };
+export const resumeUrl =
+    'https://ik.imagekit.io/rjkashyap05/portfolio/resume_rajeshwar.pdf?ik-sdk-version=javascript-1.4.3&updatedAt=1662305306215';
+export const socialLinks = {
+    email: 'work.rjkashyap05@gmail.com',
+    github: 'https://github.com/imrj05',
+    linkedin: 'https://linkedin.com/in/rajeshwar-kashyap',
+    twitter: 'https://x.com/i_am_rj05',
+};
+
+// GitHub's REST API does not expose pinned repositories (only GraphQL with a
+// token, or profile scraping). Keep this list in sync with github.com/imrj05.
+export interface PinnedRepo {
+    name: string;
+    description: string;
+    language: string;
+    url: string;
+}
+
+export const pinnedRepos: PinnedRepo[] = [
+    {
+        name: 'orbit',
+        description: 'Orbit is a native desktop workbench for the pi coding agent — a chat-style GUI rendered entirely in Rust on GPUI, the GPU-accelerated UI framework Zed is built on.',
+        language: 'Rust',
+        url: 'https://github.com/imrj05/orbit',
+    },
+    {
+        name: 'password-ganerator',
+        description: 'SecurePass Generator creates cryptographically secure passwords locally in your browser — random, memorable passphrases, and PIN modes.',
+        language: 'JavaScript',
+        url: 'https://github.com/imrj05/password-ganerator',
+    },
+    {
+        name: 'vox-app',
+        description: 'Vox is a private, local-first voice dictation app for macOS. Press a global hotkey anywhere, speak, and the transcription is inserted at the cursor — all on-device.',
+        language: 'TypeScript',
+        url: 'https://github.com/imrj05/vox-app',
+    },
+    {
+        name: 'github-card-creater',
+        description: 'Generate beautiful 1280×640 social preview cards for any GitHub repository — perfect for README embeds, link previews, and sharing.',
+        language: 'HTML',
+        url: 'https://github.com/imrj05/github-card-creater',
+    },
+    {
+        name: 'db-connect',
+        description: 'DB Connect — a fast, modern database GUI for macOS and Windows.',
+        language: 'TypeScript',
+        url: 'https://github.com/imrj05/db-connect',
+    },
+];
 export const techStack: TechCategory[] = [
   { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS'] },
   { label: 'Mobile', items: ['React Native', 'Expo'] },
@@ -206,6 +257,112 @@ export const services: ServiceItem[] = [
   },
 ];
 export const projects: Project[] = [
+  {
+    slug: 'orbit',
+    name: 'Orbit',
+    category: 'Desktop Application',
+    description: 'A native desktop workbench for the pi coding agent — a chat-style GUI rendered entirely in Rust on GPUI, speaking pi\'s RPC protocol directly over stdio.',
+    githubUser: 'imrj05',
+    githubRepo: 'orbit',
+    screenshots: '/showcase/orbit-session.webp',
+    technologies: ['Rust', 'GPUI', 'pi CLI RPC', 'stdio'],
+    highlights: [
+      'Chat-style agent sessions with streaming replies, tool rows, and plan/build/ask workflow modes',
+      'GPU-rendered, virtualized transcript with markdown and syntax-highlighted code',
+      'Review pane, Git page, access modes, and usage analytics over your own sessions',
+    ],
+    overview: [
+      'Orbit is a native desktop workbench for the pi coding agent. It renders a chat-style GUI entirely in Rust on GPUI — the GPU-accelerated UI framework Zed is built on — and speaks the pi CLI\'s RPC protocol directly over stdio: no browser, no webview, no Node.',
+      'Because Orbit and the terminal use the same session store, work started in either place stays in sync. The project is a strong example of building a polished product surface close to the metal, with the interface, safeguards, and analytics all living in one native app.',
+    ],
+    sections: [
+      {
+        title: 'Purpose',
+        body: [
+          'Orbit exists to give the pi coding agent a first-class desktop home: sessions grouped by workspace, streaming transcripts, review and Git tooling, and provider and model management in one native window. Rather than wrapping a web UI, it talks to pi directly, which keeps startup fast and the footprint small.',
+        ],
+      },
+      {
+        title: 'Notable Aspects',
+        body: [
+          'Safeguards are enforced by a bundled pi extension that hooks tool calls, offering Supervised, Auto-accept edits, and Full access modes with an inline allow/deny bar. The transcript is GPU-rendered and virtualized so cost is independent of message count, and a review pane plus usage page turn each session into something you can inspect and measure.',
+        ],
+      },
+    ],
+    links: [
+      { label: 'Project Site', href: 'https://orbit.rajeshwarkashyap.in' },
+    ],
+  },
+  {
+    slug: 'mac-share',
+    name: 'Mac Share',
+    category: 'macOS Application',
+    description: 'A menu-bar macOS app that sends and receives files and links with nearby Android devices over the local network, implementing Google\'s Nearby Share / Quick Share protocol.',
+    githubUser: 'imrj05',
+    githubRepo: 'MacShare',
+    technologies: ['Swift', 'SwiftUI', 'Nearby Share Protocol', 'Share Extension'],
+    highlights: [
+      'Menu bar first — send and receive without leaving what you are doing',
+      'Live transfer progress with speed and ETA, plus one-tap cancel',
+      'Share Extension for sending straight from Finder or any app',
+    ],
+    overview: [
+      'Mac Share brings Google\'s Nearby Share / Quick Share to macOS as a menu bar app. It discovers nearby Android devices on the local network and moves files and links between them, with a dark-first SwiftUI interface that includes a custom sidebar and a menu bar widget.',
+      'A separately documented protocol implementation sits at the core of the project, alongside practical product work: transfer history, QR pairing, live progress, and a Share Extension that plugs into Finder and other apps.',
+    ],
+    sections: [
+      {
+        title: 'Purpose',
+        body: [
+          'Android and Mac users have no first-party way to share files locally, and cloud transfers are slower and less private than they need to be. Mac Share closes that gap with a native menu bar client that speaks the Nearby Share protocol over Wi-Fi.',
+        ],
+      },
+      {
+        title: 'Notable Aspects',
+        body: [
+          'Transfers show percentage, speed, and ETA with one-tap cancel in both directions, and the menu bar widget keeps progress visible without opening the main window. A searchable transfer history and QR pairing cover the practical edges of day-to-day use.',
+        ],
+      },
+    ],
+    links: [
+      { label: 'Download', href: 'https://github.com/imrj05/MacShare/releases' },
+    ],
+  },
+  {
+    slug: 'vox',
+    name: 'Vox',
+    category: 'macOS Application',
+    description: 'A private, local-first voice dictation app for macOS — a global hotkey records speech, Whisper transcribes on-device, and the text lands at the cursor.',
+    githubUser: 'imrj05',
+    githubRepo: 'vox-app',
+    technologies: ['Tauri', 'TypeScript', 'Rust', 'Whisper', 'Metal', 'SQLite'],
+    highlights: [
+      'Fully on-device Whisper transcription with Metal GPU acceleration',
+      'Global hotkey with toggle and push-to-talk modes, plus a floating waveform widget',
+      'Context-aware developer formatting — spoken phrases become camelCase, symbols, and snippets',
+    ],
+    overview: [
+      'Vox is a voice dictation app for macOS built around privacy: audio never leaves the machine. A global hotkey starts recording from anywhere, a floating widget shows a live waveform, and OpenAI Whisper runs locally with Metal acceleration to transcribe speech in real time.',
+      'The transcript is injected directly at the cursor — no clipboard step — and a custom dictionary plus context-aware formatting help it handle developer vocabulary and code conventions. An insights dashboard turns daily dictation into stats, streaks, and usage trends.',
+    ],
+    sections: [
+      {
+        title: 'Purpose',
+        body: [
+          'Most dictation tools trade privacy for convenience by sending audio to a server. Vox keeps the entire pipeline local while still feeling instant, with seven Whisper model tiers that let users balance speed and accuracy on their own hardware.',
+        ],
+      },
+      {
+        title: 'Notable Aspects',
+        body: [
+          'Developer mode converts spoken phrases into code: casing styles, symbols, newline and indent commands, and template snippets, with prompt hints for Git, shell, Docker, and chat contexts. Under the hood, a Tauri shell pairs a custom CGEventTap hotkey thread with SQLite-backed history and model management.',
+        ],
+      },
+    ],
+    links: [
+      { label: 'Project Site', href: 'https://vox.rajeshwarkashyap.in' },
+    ],
+  },
   {
     slug: 'react-native-animated-toast-alerts',
     name: 'React Native Animated Toast Alerts',
@@ -344,6 +501,7 @@ export const projects: Project[] = [
     description: 'A web tool for generating attractive social preview cards for GitHub repositories, making projects easier to showcase in README files, portfolios, and link previews.',
     githubUser: 'imrj05',
     githubRepo: 'github-card-creater',
+    screenshots: '/showcase/github-card-creator.webp',
     technologies: ['Node.js', 'Express', 'GitHub REST API', 'SVG', 'HTML/CSS'],
     highlights: [
       'Generates 1280x640 repository cards tailored for social sharing',
@@ -472,6 +630,23 @@ export const projects: Project[] = [
     ],
   },
 ];
+// Order of the home-page Work section. Projects omitted here keep their detail
+// pages but are no longer listed.
+export const workOrder = [
+  'orbit',
+  'mac-share',
+  'vox',
+  'db-connect',
+  'github-card-creator',
+  'password-generator',
+  'developer-workspace',
+  'unified-ui',
+];
+
+export const works = workOrder
+  .map((slug) => projects.find((project) => project.slug === slug))
+  .filter((project): project is Project => Boolean(project));
+
 export function getProjectBySlug(slug: string) {
   return projects.find((project) => project.slug === slug);
 }

@@ -1,18 +1,22 @@
 interface TechnicalSectionProps {
     id?: string;
     label: string;
+    intro?: string;
+    meta?: string;
     children: React.ReactNode;
     staggerClass?: string;
 }
 
-export default function TechnicalSection({ id, label, children, staggerClass = '' }: TechnicalSectionProps) {
+export default function TechnicalSection({ id, label, intro, meta, children, staggerClass = '' }: TechnicalSectionProps) {
     return (
-        <section id={id} className={`tech-section animate-reveal ${staggerClass}`}>
+        <section id={id} className={`section animate-reveal ${staggerClass}`}>
             <div className="container">
-                <h2 className="tech-label">{label}</h2>
-                <div className="tech-content">
-                    {children}
-                </div>
+                <header className="section-head">
+                    <h2 className="section-label">[ {label} ]</h2>
+                    {intro ? <p className="section-intro">{intro}</p> : null}
+                    {meta ? <span className="section-meta">{meta}</span> : null}
+                </header>
+                {children}
             </div>
         </section>
     );

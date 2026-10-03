@@ -3,7 +3,9 @@ import './App.css'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import SeoManager from './components/SeoManager'
 import HomePage from './pages/HomePage'
+import ShowcasePage from './pages/ShowcasePage'
 import BlogsPage from './pages/BlogsPage'
 import BlogDetailPage from './pages/BlogDetailPage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
@@ -34,10 +36,12 @@ function App() {
     return (
         <BrowserRouter>
             <ScrollToHash />
+            <SeoManager />
             <div className="layout">
                 <Header />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/showcase" element={<ShowcasePage />} />
                     <Route path="/blogs" element={<BlogsPage />} />
                     <Route path="/blogs/:slug" element={<BlogDetailPage />} />
                     <Route path="/projects/:slug" element={<ProjectDetailPage />} />

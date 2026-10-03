@@ -14,9 +14,9 @@ export default function ProjectDetailPage() {
         <main className="main-content">
             <article className="project-detail container">
                 <div className="project-detail-header animate-reveal stagger-1">
-                    <Link to="/#projects" className="blogs-back">
+                    <Link to="/#work" className="blogs-back">
                         <ArrowLeft size={16} />
-                        Back to projects
+                        Back to work
                     </Link>
 
                     <div className="project-detail-meta-row">
