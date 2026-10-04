@@ -2,7 +2,6 @@ import TechnicalSection from './TechnicalSection';
 import { about, socialLinks, techStack } from '../data/portfolio';
 import { ArrowUpRight } from 'lucide-react';
 
-const stack = techStack.flatMap((category) => category.items);
 const stats = about.highlights
     .filter((highlight) => highlight.label !== 'Location')
     .map((highlight) => `${highlight.value} ${highlight.label.toLowerCase()}`)
@@ -50,7 +49,14 @@ export default function AboutSection() {
                         </div>
                         <div className="about-meta-row">
                             <span className="about-meta-label">Stack</span>
-                            <span className="about-meta-value">{stack.join(' · ')}</span>
+                            <div className="about-meta-value about-stack">
+                                {techStack.map((category) => (
+                                    <div className="about-stack-row" key={category.label}>
+                                        <span className="about-stack-category">{category.label}</span>
+                                        <span>{category.items.join(' · ')}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

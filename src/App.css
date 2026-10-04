@@ -696,6 +696,24 @@
     color: var(--text-secondary);
 }
 
+.about-stack {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.about-stack-row {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.about-stack-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    color: var(--text-label);
+}
+
 @media (max-width: 760px) {
     .about-layout {
         grid-template-columns: 1fr;
@@ -716,6 +734,14 @@
     .about-meta-row {
         grid-template-columns: 1fr;
         gap: 0.2rem;
+    }
+
+    .about-stack-row {
+        display: block;
+    }
+
+    .about-stack-category {
+        margin-right: 0.4rem;
     }
 }
 

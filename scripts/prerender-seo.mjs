@@ -51,6 +51,9 @@ const template = await readFile(path.join(distDir, 'index.html'), 'utf8');
 if (!template.includes('<!-- seo:start -->')) {
     throw new Error('dist/index.html is missing the <!-- seo:start --> marker.');
 }
+if (!template.includes('<div id="root"></div>')) {
+    throw new Error('dist/index.html is missing the <div id="root"></div> marker.');
+}
 
 const routes = await loadSeoRoutes();
 

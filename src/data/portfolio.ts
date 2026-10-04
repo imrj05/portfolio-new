@@ -231,12 +231,13 @@ export const pinnedRepos: PinnedRepo[] = [
     },
 ];
 export const techStack: TechCategory[] = [
-  { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS'] },
-  { label: 'Mobile', items: ['React Native', 'Expo'] },
+  { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vite'] },
+  { label: 'Desktop & Native', items: ['Tauri', 'Electron', 'Rust', 'SwiftUI'] },
+  { label: 'Mobile', items: ['React Native'] },
   { label: 'Backend', items: ['Node.js', 'Express', 'PHP', 'Laravel', 'CodeIgniter'] },
-  { label: 'Database', items: ['MySQL', 'MongoDB', 'PostgreSQL'] },
-  { label: 'Cloud & DevOps', items: ['AWS EC2', 'S3', 'CloudFront', 'Vercel', 'Docker'] },
-  { label: 'Tools', items: ['Git', 'GitHub', 'VS Code', 'Figma', 'Postman'] },
+  { label: 'Database', items: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Redis'] },
+  { label: 'Cloud & DevOps', items: ['AWS', 'Vercel', 'Docker'] },
+  { label: 'Tools', items: ['Git', 'GitHub', 'VS Code'] },
 ];
 export const services: ServiceItem[] = [
   {
