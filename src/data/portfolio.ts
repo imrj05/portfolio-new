@@ -183,7 +183,7 @@ export const about = {
 export const resumeUrl =
     'https://ik.imagekit.io/rjkashyap05/portfolio/resume_rajeshwar.pdf?ik-sdk-version=javascript-1.4.3&updatedAt=1662305306215';
 export const socialLinks = {
-    email: 'work.rjkashyap05@gmail.com',
+    email: 'rajeshwar@rajeshwarkashyap.in',
     github: 'https://github.com/imrj05',
     linkedin: 'https://linkedin.com/in/rajeshwar-kashyap',
     twitter: 'https://x.com/i_am_rj05',
